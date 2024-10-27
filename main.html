@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perhitungan Nilai Mahasiswa</title>
+</head>
+<body>
+    <h2>Aplikasi Perhitungan Nilai</h2>
+    <p> Masukkan Nilai Anda : </p>
+    <form>
+        <label for="presensi">Presensi :</label>
+        <input type="number" id="presensi" min="0" max="100" value="0"><br><br>
+
+        <label for="tugas">Tugas :</label>
+        <input type="number" id="tugas" min="0" max="100" value="0"><br><br>
+
+        <label for="uts">UTS :</label>
+        <input type="number" id="uts" min="0" max="100" value="0"><br><br>
+
+        <label for="uas">UAS :</label>
+        <input type="number" id="uas" min="0" max="100" value="0"><br><br>
+
+        <button type="button" onclick="hitungNilai()">Hitung</button>
+        <button type="button" onclick="cancel()">Cancel</button>
+    </form>
+
+    <h3>Hasil:</h3>
+    <p id="nilaiAkhir">Nilai Akhir: </p>
+    <p id="hurufNilai">Huruf Nilai: </p>
+
+    <script>
+        function hitungNilai() {
+            // Ambil nilai input dari pengguna
+            let presensi = parseFloat(document.getElementById("presensi").value);
+            let tugas = parseFloat(document.getElementById("tugas").value);
+            let uts = parseFloat(document.getElementById("uts").value);
+            let uas = parseFloat(document.getElementById("uas").value);
+
+            // Hitung nilai akhir berdasarkan komposisi
+            let nilaiAkhir = (presensi * 0.1) + (tugas * 0.2) + (uts * 0.3) + (uas * 0.4);
+
+            // Tentukan huruf nilai
+            let huruf;
+            if (nilaiAkhir > 80) {
+                huruf = "A";
+            } else if (nilaiAkhir > 75) {
+                huruf = "B+";
+            } else if (nilaiAkhir > 70) {
+                huruf = "B";
+            } else if (nilaiAkhir > 65) {
+                huruf = "B-";
+            } else if (nilaiAkhir > 60) {
+                huruf = "C+";
+            } else if (nilaiAkhir > 55) {
+                huruf = "C";
+            } else if (nilaiAkhir > 50) {
+                huruf = "C-";
+            } else if (nilaiAkhir > 30) {
+                huruf = "D";
+            } else {
+                huruf = "E";
+            }
+
+            // Tampilkan hasil
+            document.getElementById("nilaiAkhir").innerHTML = "Nilai Akhir: " + nilaiAkhir.toFixed(2);
+            document.getElementById("hurufNilai").innerHTML = "Huruf Nilai: " + huruf;
+        }
+
+        function cancel() {
+            // Reset semua input ke 0
+            document.getElementById("presensi").value = 0;
+            document.getElementById("tugas").value = 0;
+            document.getElementById("uts").value = 0;
+            document.getElementById("uas").value = 0;
+
+            // Kosongkan hasil output
+            document.getElementById("nilaiAkhir").innerHTML = "Nilai Akhir: ";
+            document.getElementById("hurufNilai").innerHTML = "Huruf Nilai: ";
+        }
+    </script>
+</body>
+</html>
